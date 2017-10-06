@@ -13,7 +13,7 @@ impl Erase {
 }
 
 impl EscCode for Erase {
-    const OPCODE: u16 = 0x20;
+    fn OPCODE(&self) -> u16 { 0x20 }
     fn args(&self) -> Vec<String> {
         encode_args![self.area]
     }
@@ -33,7 +33,7 @@ impl RemoveChars {
 }
 
 impl EscCode for RemoveChars {
-    const OPCODE: u16 = 0x21;
+    fn OPCODE(&self) -> u16 { 0x21 }
     fn args(&self) -> Vec<String> {
         encode_args![self.count]
     }
@@ -57,7 +57,7 @@ impl RemoveRows {
 }
 
 impl EscCode for RemoveRows {
-    const OPCODE: u16 = 0x22;
+    fn OPCODE(&self) -> u16 { 0x22 }
     fn args(&self) -> Vec<String> {
         encode_args![self.count, self.include]
     }
@@ -78,7 +78,7 @@ impl InsertBlank {
 }
 
 impl EscCode for InsertBlank {
-    const OPCODE: u16 = 0x26;
+    fn OPCODE(&self) -> u16 { 0x26 }
     fn args(&self) -> Vec<String> {
         encode_args![self.count]
     }
@@ -101,7 +101,7 @@ impl InsertRows {
 }
 
 impl EscCode for InsertRows {
-    const OPCODE: u16 = 0x27;
+    fn OPCODE(&self) -> u16 { 0x27 }
     fn args(&self) -> Vec<String> {
         encode_args![self.count, self.include]
     }

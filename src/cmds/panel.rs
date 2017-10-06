@@ -7,7 +7,7 @@ use cmds::EscCode;
 pub struct PushPanel(pub Option<u64>, pub Option<bool>);
 
 impl EscCode for PushPanel {
-    const OPCODE: u16 = 0x60;
+    fn OPCODE(&self) -> u16 { 0x60 }
     fn args(&self) -> Vec<String> {
         encode_args![?self.0, ?self.1]
     }
@@ -19,7 +19,7 @@ impl EscCode for PushPanel {
 pub struct PopPanel(pub Option<u64>);
 
 impl EscCode for PopPanel {
-    const OPCODE: u16 = 0x61;
+    fn OPCODE(&self) -> u16 { 0x61 }
     fn args(&self) -> Vec<String> {
         encode_args![?self.0]
     }
@@ -66,7 +66,7 @@ impl SplitPanel {
 }
 
 impl EscCode for SplitPanel {
-    const OPCODE: u16 = 0x62;
+    fn OPCODE(&self) -> u16 { 0x62 }
     fn args(&self) -> Vec<String> {
         encode_args![self.l_tag, self.r_tag, self.kind, ?self.save, ?self.rule,
                      ?self.split_tag, ?self.retain_offscreen_state]
@@ -91,7 +91,7 @@ impl UnsplitPanel {
 }
 
 impl EscCode for UnsplitPanel {
-    const OPCODE: u16 = 0x63;
+    fn OPCODE(&self) -> u16 { 0x63 }
     fn args(&self) -> Vec<String> {
         encode_args![self.save, self.unsplit_tag]
     }
@@ -114,7 +114,7 @@ impl AdjustPanelSplit {
 }
 
 impl EscCode for AdjustPanelSplit {
-    const OPCODE: u16 = 0x64;
+    fn OPCODE(&self) -> u16 { 0x64 }
     fn args(&self) -> Vec<String> {
         encode_args![self.kind, self.rule, self.adjust_tag]
     }
@@ -125,7 +125,7 @@ impl EscCode for AdjustPanelSplit {
 pub struct RotateSectionDown(pub Option<u64>);
 
 impl EscCode for RotateSectionDown {
-    const OPCODE: u16 = 0x65;
+    fn OPCODE(&self) -> u16 { 0x65 }
     fn args(&self) -> Vec<String> {
         encode_args![?self.0]
     }
@@ -136,7 +136,7 @@ impl EscCode for RotateSectionDown {
 pub struct RotateSectionUp(pub Option<u64>);
 
 impl EscCode for RotateSectionUp {
-    const OPCODE: u16 = 0x66;
+    fn OPCODE(&self) -> u16 { 0x66 }
     fn args(&self) -> Vec<String> {
         encode_args![?self.0]
     }
@@ -148,7 +148,7 @@ impl EscCode for RotateSectionUp {
 pub struct SwitchActiveSection(pub u64);
 
 impl EscCode for SwitchActiveSection {
-    const OPCODE: u16 = 0x67;
+    fn OPCODE(&self) -> u16 { 0x67 }
     fn args(&self) -> Vec<String> {
         encode_args![self.0]
     }
